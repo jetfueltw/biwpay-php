@@ -35,7 +35,7 @@ class DigitalPayment extends Payment
             'mer_order_no'      => $tradeNo,
             'trade_amount'      => $amount,
             'service_type'      => $channel,
-            'order_date'        => date('Y-m-d H:i:s'),//$this->getCurrentTime(),
+            'order_date'        => $this->getCurrentTime(),
             'page_url'          => $returnUrl,
             'back_url'           => $notifyUrl,
         ]);

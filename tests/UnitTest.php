@@ -75,11 +75,11 @@ class UnitTest extends TestCase
         $tradeNo = $faker->uuid;
         $bank = Bank::ABC;
         $amount = 2.5;
-        $returnUrl = $faker->url;
         $notifyUrl = $faker->url;
+        $returnUrl = $faker->url;
 
         $payment = new BankPayment($this->merchantId, $this->secretKey);
-        $result = $payment->order($tradeNo, $bank, $amount, $returnUrl, $notifyUrl);
+        $result = $payment->order($tradeNo, $bank, $amount, $notifyUrl, $returnUrl);
         var_dump($result);
         $this->assertContains('<form', $result, '', true);
 

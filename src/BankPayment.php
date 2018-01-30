@@ -38,7 +38,7 @@ class BankPayment extends Payment
             'trade_amount'      => $amount,
             'channel_code'      => $bank,
             'service_type'      => 'b2c',
-            'order_date'        => date('Y-m-d H:i:s'),//$this->getCurrentTime(),
+            'order_date'        => $this->getCurrentTime(),
             'page_url'          => $returnUrl,
             'back_url'           => $notifyUrl,
             

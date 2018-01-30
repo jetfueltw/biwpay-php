@@ -101,3 +101,56 @@ Result:
     'sign' => 'XXXXXXXXXXXXXXXXXX'; //簽名
     'sign_type' => 'MD5'; //簽名類型
 ]
+```
+
+### 掃碼支付訂單支付成功查詢
+
+使用商家訂單號查詢單筆訂單是否支付成功。
+
+```
+$merchantId = 'XXXXXXXXXXXXXXX'; // 商家號
+$secretKey = 'XXXXXXXXXXXXXXX'; // MD5 密鑰
+$tradeNo = '20180109023351XXXXX'; // 商家產生的唯一訂單號
+```
+```
+$tradeQuery = new TradeQuery($merchantId, $secretKey);
+$result = $tradeQuery->isPaid($tradeNo);
+```
+```
+Result:
+bool(true|false)
+```   
+
+## 網銀支付下單
+
+使用網路銀行支付，下單後返回跳轉頁面，請 render 到客戶端。
+
+```
+$merchantId = 'XXXXXXXXXXXXXXX'; // 商家號
+$secretKey = 'XXXXXXXXXXXXXXX'; // MD5 密鑰
+$tradeNo = '20180109023351XXXXX'; // 商家產生的唯一訂單號
+$bank = Bank::ABC; // 銀行編號
+$amount = 1.00; // 消費金額 (元)
+$notifyUrl = 'https://XXX.XXX.XXX'; // 交易完成後異步通知接口
+$returnUrl = 'https://XXX.XXX.XXX'; // 交易完成後會跳轉到這個頁面
+```
+```
+$payment = new BankPayment($merchantId, $secretKey);
+$result = $payment->order($tradeNo, $bank, $amount, $notifyUrl, $returnUrl);
+```
+```
+Result:
+跳轉用的 HTML，請 render 到客戶端
+```
+
+### 網銀支付交易成功通知
+
+同掃碼支付交易成功通知
+
+### 網銀支付訂單查詢
+
+同掃碼支付訂單查詢
+
+### 網銀支付訂單支付成功查詢
+
+同掃碼支付訂單支付成功查詢 

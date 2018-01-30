@@ -7,6 +7,8 @@ use Jetfuel\Biwpay\HttpClient\GuzzleHttpClient;
 class Payment
 {
     const BASE_API_URL   = 'http://api.biwpay.com/';
+    const TIME_ZONE      = 'Asia/Shanghai';
+    const TIME_FORMAT    = 'Y-m-d H:i:s';
 
     /**
      * @var string
@@ -57,6 +59,16 @@ class Payment
         $payload['sign_type'] = 'MD5';
 
         return $payload;
+    }
+
+    /**
+     * Get current time.
+     *
+     * @return string
+     */
+    protected function getCurrentTime()
+    {
+        return (new \DateTime('now', new \DateTimeZone(self::TIME_ZONE)))->format(self::TIME_FORMAT);
     }
 
 }
